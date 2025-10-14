@@ -4,4 +4,4 @@ services:
       restart: always
       image: talel12/front-session
       container_name: front_end
-      port: 4002:80
+      ports: 4002:80
