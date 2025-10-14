@@ -2,7 +2,7 @@
 services:
     front-app:
       restart: always
-      image: talel12/front-session
+      image: talel12/front-session14
       container_name: front_end
       ports: 
         - "4002:80"
