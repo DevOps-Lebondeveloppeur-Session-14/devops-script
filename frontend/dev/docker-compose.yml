@@ -1,0 +1,7 @@
+# Front end 
+services:
+    front-app:
+      restart: always
+      image: talel12/front-session
+      container_name: front_end
+      port: 4002:80
