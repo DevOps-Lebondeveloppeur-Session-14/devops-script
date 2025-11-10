@@ -1,6 +1,7 @@
 services:
   prometheus:
     image: prom/prometheus
+    depends_on: [ node_exporter , cadvisor ]
     container_name: prometheus
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -8,7 +9,26 @@ services:
     ports:
       - 9090:9090
 
-    #  depends_on: [ node_exporter , cadvisor ]
+
+  node_exporter:
+    image: prom/node-exporter
+    container_name: node_exporter
+
+  cadvisor:
+    image: google/cadvisor
+    container_name: monitoring_cadvisor
+    restart: unless-stopped
+    privileged: true
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    environment:
+      - DOCKER_CGROUP_DRIVER=cgroupfs  # Forces cgroup v1 compatibility
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
 
 
 volumes:
