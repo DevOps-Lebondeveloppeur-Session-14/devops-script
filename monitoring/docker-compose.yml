@@ -7,5 +7,9 @@ services:
       - prometheus_data:/prometheus
     ports:
       - 9090:9090
-      
+
     #  depends_on: [ node_exporter , cadvisor ]
+
+
+volumes:
+  prometheus_data:
