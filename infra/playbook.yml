@@ -1,0 +1,8 @@
+- name: Install tree package
+  hosts: all
+  become: true
+  tasks:
+    - name: Installer le paquet tree
+      apt:
+        name: tree
+        state: present
